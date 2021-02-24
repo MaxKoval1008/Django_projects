@@ -1,29 +1,31 @@
 from django.db import models
 
 
-class Post(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    img = models.ImageField()
-    created_at = models.DateTimeField(auto_now_add=True)
+class Group(models.Model):
+    group_number = models.CharField(max_length=20)
+    logo_group = models.ImageField()
+    group_description = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.group_number
 
 
-class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    text = models.TextField()
+class Student(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    student_photo = models.ImageField()
+    student_number = models.CharField(max_length=50)
+    firstname_student = models.CharField(max_length=20)
+    lastname_student = models.CharField(max_length=20, null=True, blank=True)  # делает вводимое поле необязательным
+    description = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.student_number
 
 
-class Comment_2_comment(models.Model):
-    comment = models.OneToOneField(Comment, on_delete=models.CASCADE)
+class Work(models.Model):
+    students = models.ForeignKey(Student, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    text = models.TextField()
+    works_description = models.TextField()
 
     def __str__(self):
         return self.title
