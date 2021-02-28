@@ -5,16 +5,16 @@ from .models import Product, Review, Basket
 from .serializers import ProductSerializer, ReviewSerializer, BasketSerializer
 
 
-class ProductCreateView(CreateAPIView):
+class ProductCreateView(CreateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
-class ReviewCreateView(CreateAPIView):
+class ReviewCreateView(CreateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
 
-class BasketCreateView(CreateAPIView):
+class BasketCreateView(CreateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView):
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
