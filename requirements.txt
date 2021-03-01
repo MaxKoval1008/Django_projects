@@ -12,3 +12,4 @@ PyYAML==5.4.1
 six==1.15.0
 sqlparse==0.4.1
 uritemplate==3.0.1
+django-filter==2.4.0

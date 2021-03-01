@@ -11,12 +11,11 @@ class Review(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=15, null=None)
+    code = models.CharField(max_length=15, null=True)
     prise = models.FloatField()
-    image = models.ImageField()
     amount = models.IntegerField()
     options = models.TextField()
-    reviews = models.ManyToManyField(Review, null=None, blank=None)
+    #  reviews = models.ManyToManyField(Review, null=True, blank=True)
 
     def __str__(self):
         return self.name
