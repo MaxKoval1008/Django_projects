@@ -8,13 +8,19 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'code', 'prise', 'amount', 'options')
 
 
-class ReviewSerializer(serializers.ModelSerializer):
+class ProductNameSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Review
-        fields = ('username', 'comment')
-
-
-class BasketSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Basket
-        fields = ('name', 'address', 'purchases')
+        model = Product
+        fields = ['name']
+#
+#
+# class ReviewNameSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Review
+#         fields = 'username'
+#
+#
+# class BasketSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Basket
+#         fields = ('name', 'address', 'purchases')
