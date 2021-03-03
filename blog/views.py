@@ -1,5 +1,5 @@
 from drf_spectacular.contrib.django_filters import DjangoFilterBackend
-from rest_framework import generics, mixins
+from rest_framework import mixins
 from rest_framework.generics import (
     CreateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView, UpdateAPIView, GenericAPIView
 )

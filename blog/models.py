@@ -10,9 +10,9 @@ class Review(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)  # unique = True - проверяет уникальность данного поля
     code = models.CharField(max_length=15, null=True)
-    prise = models.FloatField()
+    price = models.FloatField()
     amount = models.IntegerField()
     options = models.TextField()
     #  reviews = models.ManyToManyField(Review, null=True, blank=True)
@@ -28,4 +28,3 @@ class Basket(models.Model):
 
     def __str__(self):
         return f'{self.name}`s Basket'
-
