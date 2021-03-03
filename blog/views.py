@@ -1,11 +1,10 @@
 from drf_spectacular.contrib.django_filters import DjangoFilterBackend
-from rest_framework import generics
+from rest_framework import generics, mixins
 from rest_framework.generics import (
     CreateAPIView, RetrieveAPIView, ListAPIView, DestroyAPIView, UpdateAPIView, GenericAPIView
 )
 from .models import Product, Review, Basket
 from .serializers import ProductSerializer, ProductNameSerializer  # , ReviewSerializer, BasketSerializer
-from rest_framework.response import Response
 
 """Products"""
 
@@ -35,16 +34,12 @@ class ProductListView(ListAPIView):
     serializer_class = ProductSerializer
 
 
-class ProductNamePatchView(GenericAPIView):
+class ProductNameUpdate(mixins.UpdateModelMixin, GenericAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductNameSerializer
 
-    def patch(self, request, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 
 class BillingProductView(ListAPIView):
